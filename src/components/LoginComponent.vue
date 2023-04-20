@@ -6,7 +6,7 @@
 <!--        <v-btn color="primary">登入</v-btn>-->
 <!--      </v-card-text>-->
 <!--    </v-card>-->
-    <v-card class="w-33 h-auto">
+    <v-card class="w-auto h-auto">
       <div class="d-flex justify-space-between">
         <div>
           <v-card-title class="text-h5">
