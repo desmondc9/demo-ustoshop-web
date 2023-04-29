@@ -29,11 +29,9 @@ const redirectToCainiao = () => {
     height: 95%;
     background: url("../assets/bg.jpeg") no-repeat center center fixed !important;
     background-size: cover !important;
-
 }
 
 .main-title {
-
     line-height: 1.5;
     font-family: "Noto Sans", "Liberation Sans", sans-serif;
     font-weight: bolder;
