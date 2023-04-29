@@ -1,6 +1,16 @@
 <template>
   <v-app class="d-flex">
-    <v-app-bar title="打爆专家"></v-app-bar>
+    <v-app-bar title="打爆专家" color="orange-darken-3">
+      <v-btn variant="text">
+        使用指南
+      </v-btn>
+      <v-btn variant="text">
+        关于我们
+      </v-btn>
+      <v-btn variant="text">
+        打爆排行
+      </v-btn>
+    </v-app-bar>
 
     <v-main id="my-main" class="d-flex">
 
