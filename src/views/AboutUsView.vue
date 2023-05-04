@@ -8,15 +8,13 @@
       <v-col class="fill-height">
         <v-row class="justify-center">
           <v-img
-            :height="1000"
-            aspect-ratio="1"
+            :height="1500"
             cover
             src="./aboutus_1.jpg"></v-img>
         </v-row>
         <v-row class="justify-center">
           <v-img
-            :height="1100"
-            aspect-ratio="1"
+            :height="1800"
             cover
             src="./aboutus_2.jpeg"></v-img>
         </v-row>
