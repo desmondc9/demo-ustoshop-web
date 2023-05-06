@@ -2,11 +2,11 @@
   <v-main class="main">
     <v-container class="d-flex justify-center align-center mt-lg-16 pt-lg-16">
       <v-col>
-        <v-row class="main-title justify-center text-lg-h1 text-h2 font-italic mt-lg-16 pt-lg-16">打爆专家 <br> 强势出击
+        <v-row class="main-title justify-center text-lg-h1 text-h2 font-italic">打爆专家 <br> 强势出击
         </v-row>
         <v-row class="sub-title-1 justify-center text-lg-h4 text-h5"> - 12.5方不是梦 -</v-row>
         <v-row class="sub-title-2 justify-center">
-          <v-btn @click="redirectToCainiao" class="mt-8" size="x-large" variant="outlined" color="orange-darken-3">
+          <v-btn @click="redirectToCainiao" class="mt-8" size="x-large" color="orange-darken-3">
             点击体验
           </v-btn>
         </v-row>
