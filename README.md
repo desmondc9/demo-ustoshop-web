@@ -2,6 +2,12 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
+## Push to Docker Registry
+```shell
+docker buildx build -t registry.cn-shanghai.aliyuncs.com/shisanfan/dabaozhuanjia-web:202305007.5 -t registry.cn-shanghai.aliyuncs.com/shisanfan/dabaozhuanjia-web:latest --platform=linux/amd64,linux/arm64 --push .
+
+```
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
