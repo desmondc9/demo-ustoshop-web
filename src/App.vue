@@ -1,18 +1,29 @@
 <template>
   <v-app class="d-flex w-100">
 
-    <v-app-bar title="打爆专家" color="orange-darken-3" @click.prevent.stop="router.push({name: 'Index'})">
-      <v-btn variant="text">
-        使用指南
-      </v-btn>
+    <v-app-bar color="#f47a00" @click.prevent.stop="router.push({name: 'Index'})">
+      <v-row class="d-flex align-center">
+        <v-col class="d-flex justify-start">
+          <div class="d-flex icon-wrapper" @click.prevent.stop="router.push({name: 'Index'})">
+            <img class="d-flex logo-img" src="/logo-1.png">
+            <div class="text-md-h6 pt-md-1 text-white">打爆专家</div>
+          </div>
+        </v-col>
 
-      <v-btn variant="text">
-        打爆排行
-      </v-btn>
+        <v-col class="d-flex justify-end text-white">
+          <v-btn variant="text">
+            使用指南
+          </v-btn>
 
-      <v-btn variant="text" @click.prevent.stop="router.push({name: 'AboutUs'})">
-        关于我们
-      </v-btn>
+          <v-btn variant="text">
+            打爆排行
+          </v-btn>
+
+          <v-btn variant="text" @click.prevent.stop="router.push({name: 'AboutUs'})">
+            关于我们
+          </v-btn>
+        </v-col>
+      </v-row>
 
     </v-app-bar>
 
@@ -34,4 +45,15 @@ import router from "@/router";
 </script>
 
 <style scoped>
+
+.logo-img {
+    height: 40px;
+}
+
+.app-bar {
+    color: white;
+}
+.icon-wrapper:hover {
+    cursor: pointer;
+}
 </style>

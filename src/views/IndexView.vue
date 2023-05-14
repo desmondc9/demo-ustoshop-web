@@ -6,7 +6,7 @@
         </v-row>
         <v-row class="sub-title-1 justify-center text-lg-h4 text-h5"> - 12.5方不是梦 -</v-row>
         <v-row class="sub-title-2 justify-center">
-          <v-btn @click="redirectToCainiao" class="mt-8" size="x-large" color="orange-darken-3">
+          <v-btn @click="redirectToCainiao" class="mt-8 redirect-button" size="x-large" color="#f47a00">
             点击体验
           </v-btn>
         </v-row>
@@ -40,6 +40,11 @@ const redirectToCainiao = () => {
 }
 
 .sub-title-1 {
+    color: white;
+    text-shadow: -1px 0 rgba(0, 0, 0, 0.5), 0 1px rgba(0, 0, 0, 0.5), 1px 0 rgba(0, 0, 0, 0.5), 0 -1px rgba(0, 0, 0, 0.5);
+
+}
+.redirect-button {
     color: white;
 }
 
