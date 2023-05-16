@@ -11,7 +11,7 @@
         </v-col>
 
         <v-col class="d-flex justify-end text-white">
-          <v-btn variant="text">
+          <v-btn variant="text" @click.prevent.stop="router.push({name: 'Tutorial'})">
             使用指南
           </v-btn>
 
@@ -53,6 +53,7 @@ import router from "@/router";
 .app-bar {
     color: white;
 }
+
 .icon-wrapper:hover {
     cursor: pointer;
 }
