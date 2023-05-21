@@ -6,20 +6,20 @@
         <v-col class="d-flex justify-start">
           <div class="d-flex icon-wrapper" @click.prevent.stop="router.push({name: 'Index'})">
             <img class="d-flex logo-img" src="/logo-1.png">
-            <div class="text-md-h6 pt-md-1 text-white">打爆专家</div>
+            <div class="text-md-h6 pt-2 pt-md-1 text-white">打爆专家</div>
           </div>
         </v-col>
 
         <v-col class="d-flex justify-end text-white">
-          <v-btn variant="text" @click.prevent.stop="router.push({name: 'Tutorial'})">
+          <v-btn variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4" @click.prevent.stop="router.push({name: 'Tutorial'})">
             使用指南
           </v-btn>
 
-          <v-btn variant="text">
+          <v-btn variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4">
             打爆排行
           </v-btn>
 
-          <v-btn variant="text" @click.prevent.stop="router.push({name: 'AboutUs'})">
+          <v-btn variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4" @click.prevent.stop="router.push({name: 'AboutUs'})">
             关于我们
           </v-btn>
         </v-col>
