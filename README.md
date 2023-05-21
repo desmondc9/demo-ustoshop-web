@@ -4,7 +4,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 ## Push to Docker Registry
 ```shell
-docker buildx build -t registry.cn-shanghai.aliyuncs.com/shisanfan/dabaozhuanjia-web:202305007.5 -t registry.cn-shanghai.aliyuncs.com/shisanfan/dabaozhuanjia-web:latest --platform=linux/amd64,linux/arm64 --push .
+docker buildx build -t registry.cn-shanghai.aliyuncs.com/shisanfan/dabaozhuanjia-web:20230507.5 -t registry.cn-shanghai.aliyuncs.com/shisanfan/dabaozhuanjia-web:latest --platform=linux/amd64,linux/arm64 --push .
 
 ```
 
