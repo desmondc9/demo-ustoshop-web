@@ -27,7 +27,7 @@ const redirectToCainiao = () => {
 
 .main {
     height: 95%;
-    background: url("../assets/bg2.png") no-repeat center center fixed !important;
+    background: url("../assets/bg3.jpg") no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
@@ -36,12 +36,12 @@ const redirectToCainiao = () => {
     font-family: "Noto Sans", "Liberation Sans", sans-serif;
     font-weight: bolder;
     color: white;
-    text-shadow: -1px 0 rgba(0, 0, 0, 0.5), 0 1px rgba(0, 0, 0, 0.5), 1px 0 rgba(0, 0, 0, 0.5), 0 -1px rgba(0, 0, 0, 0.5);
+    //text-shadow: -1px 0 rgba(0, 0, 0, 0.5), 0 1px rgba(0, 0, 0, 0.5), 1px 0 rgba(0, 0, 0, 0.5), 0 -1px rgba(0, 0, 0, 0.5);
 }
 
 .sub-title-1 {
     color: white;
-    text-shadow: -1px 0 rgba(0, 0, 0, 0.5), 0 1px rgba(0, 0, 0, 0.5), 1px 0 rgba(0, 0, 0, 0.5), 0 -1px rgba(0, 0, 0, 0.5);
+    //text-shadow: -1px 0 rgba(0, 0, 0, 0.5), 0 1px rgba(0, 0, 0, 0.5), 1px 0 rgba(0, 0, 0, 0.5), 0 -1px rgba(0, 0, 0, 0.5);
 
 }
 .redirect-button {
