@@ -10,7 +10,7 @@
 
         <v-row class="d-flex justify-center align-self-center mt-10">
           <video class="video" controls>
-            <source src="https://dabaozhuanjia-web.oss-cn-shanghai.aliyuncs.com/videos/tutorial.mp4" type="video/mp4">
+            <source src="https://dabaozhuanjia-web.oss-cn-shanghai.aliyuncs.com/videos/tutorial_20230621.mp4" type="video/mp4">
             <!--        <source src="movie.ogg" type="video/ogg">-->
             Your browser does not support the video tag.
           </video>
