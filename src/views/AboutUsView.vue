@@ -28,7 +28,7 @@
         </v-row>
 
         <v-row class="d-flex justify-center align-self-center mt-10">
-          <img class="contact-qrcode" src="/aboutus-5.png" alt="contact qrcode" />
+          <img class="contact-qrcode" src="https://dabaozhuanjia-web.oss-cn-shanghai.aliyuncs.com/qrcode/dabaozhuanjia-q-and-a-qrcode.png" alt="contact qrcode" />
         </v-row>
 
         <v-row class="d-flex justify-center align-self-center mt-10 text-h5">
