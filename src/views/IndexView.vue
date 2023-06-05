@@ -27,7 +27,7 @@ const redirectToCainiao = () => {
 
 .main {
     height: 95%;
-    background: url("../assets/bg3.jpg") no-repeat center center fixed !important;
+    background: url("https://dabaozhuanjia-web.oss-cn-shanghai.aliyuncs.com/images/background.png") no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
