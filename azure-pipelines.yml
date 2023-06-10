@@ -33,7 +33,7 @@ stages:
         path: $(Pipeline.Workspace)/docker
 
     - script: |
-          cat $(docker_registry_shisanfan.secureFilePath) | docker login --username=$(docker_username) --password-stdin $(docker_password) $(docker_host)
+          cat $(docker_registry_shisanfan.secureFilePath) | docker login --username=$(docker_username) --password-stdin $(docker_host)
       displayName: Docker Login
    
     - script: |
