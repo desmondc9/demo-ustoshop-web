@@ -61,7 +61,7 @@ stages:
                     architecture: 'x64'
 
                 - script: |
-                    python $(Pipeline.Workspace)\drop\publish.py
+                    python $(Pipeline.Workspace)/drop/publish.py
                   env:
                     ALIBABA_CLOUD_ACCESS_KEY_ID: $(accesskey_id)
                     ALIBABA_CLOUD_ACCESS_KEY_SECRET: $(accesskey_secret)
