@@ -5,6 +5,9 @@ resources:
 - repo: self
 
 variables:
+  docker_service_connection: 'shisanfan-docker-registry'
+  docker_host: 'registry.cn-shanghai.aliyuncs.com'
+  docker_image: 'shisanfan/dabaozhuanjia-web'
   tag: '$(Build.BuildId)'
 
 stages:
@@ -16,13 +19,31 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      displayName: Build & Push an image
+    - task: Cache@2
+      displayName: Cache Docker Images
       inputs:
-        containerRegistry: 'shisanfan-docker-registry'
-        repository: 'shisanfan/dabaozhuanjia-web'
+        key: 'docker | "$(Agent.OS)" | cache'
+        path: $(Pipeline.Workspace)/docker
+        cacheHitVar: CACHE_RESTORED                #Variable to set to 'true' when the cache is restored
+
+    - script: |
+        docker load -i $(Pipeline.Workspace)/docker/cache.tar
+      displayName: Docker restore
+      condition: and(not(canceled()), eq(variables.CACHE_RESTORED, 'true'))
+
+    - task: Docker@2
+      displayName: Build & Push an Docker Image
+      inputs:
+        containerRegistry: $(docker_service_connection)
+        repository: $(docker_iamge)
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
           latest
+    
+    - script: |
+        mkdir -p $(Pipeline.Workspace)/docker
+        docker save -o $(Pipeline.Workspace)/docker/cache.tar $(docker_host)/$(docker_image):$(tag)
+      displayName: Docker Save
+      condition: and(not(canceled()), not(failed()), ne(variables.CACHE_RESTORED, 'true'))
