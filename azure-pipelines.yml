@@ -6,6 +6,7 @@ resources:
 
 variables:
   docker_service_connection: shisanfan-docker-registry
+  docker_image: shisanfan/dabaozhuanjia-web
   tag: '$(Build.BuildId)'
 
 stages:
@@ -21,7 +22,7 @@ stages:
       displayName: Build & Push an image
       inputs:
         containerRegistry: '$(docker_service_connection)'
-        repository: 'shisanfan/dabaozhuanjia-web'
+        repository: '$(docker_image)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
