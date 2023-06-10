@@ -59,9 +59,12 @@ stages:
                     versionSpec: '3.10'
                     addToPath: true
                     architecture: 'x64'
+                
+                - script: pip install -r $(Pipeline.Workspace)/drop/requirements.txt
+                  displayName: Pip Install
 
-                - script: |
-                    python $(Pipeline.Workspace)/drop/publish.py
+                - script: python $(Pipeline.Workspace)/drop/publish.py
+                  displayName: Push to Aliyun Function
                   env:
                     ALIBABA_CLOUD_ACCESS_KEY_ID: $(accesskey_id)
                     ALIBABA_CLOUD_ACCESS_KEY_SECRET: $(accesskey_secret)
