@@ -20,7 +20,7 @@ stages:
       displayName: Build & Push an image
       inputs:
         containerRegistry: 'shisanfan-docker-registry'
-        repository: 'dabaozhuanjia-web'
+        repository: 'shisanfan/dabaozhuanjia-web'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: |
