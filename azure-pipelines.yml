@@ -1,13 +1,11 @@
 trigger:
-- main
+- '*'
 
 resources:
 - repo: self
 
 variables:
-  - group: 'Docker Registry Shisanfan'
-  - name: docker_image
-    value: shisanfan/dabaozhuanjia-web
+
   - name: docker_tag
     value: '$(Build.BuildId)'
 
@@ -20,35 +18,12 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: DownloadSecureFile@1
-      name: docker_registry_shisanfan
-      displayName: 'Download CA certificate'
+    - task: Docker@2
       inputs:
-        secureFile: 'docker_registry_shisanfan.txt'
-
-    # - task: Cache@2
-    #   displayName: Cache Task
-    #   inputs:
-    #     key: 'docker | "$(Agent.OS)" | cache'
-    #     path: $(Pipeline.Workspace)/docker
-
-    - script: |
-          cat $(docker_registry_shisanfan.secureFilePath) | docker login --username=$(docker_username) --password-stdin $(docker_host)
-      displayName: Docker Login
-   
-    # - script: |
-    #     docker load -i $(Pipeline.Workspace)/docker/cache.tar
-    #     ls -alh
-    #     ls -alh $(Pipeline.Workspace)/docker/
-    #   displayName: Docker Restore
-    #   continueOnError: true
-
-    - script: |
-        docker buildx build -t $(docker_host)/$(docker_image):$(docker_tag) -t $(docker_host)/$(docker_image):latest --platform=linux/amd64,linux/arm64 --push .
-      displayName: Build And Push Docker Images
-
-    # - script: |
-    #     mkdir -p $(Pipeline.Workspace)/docker
-    #     docker save -o $(Pipeline.Workspace)/docker/cache.tar $(docker_host)/$(docker_image):$(docker_tag)
-    #   displayName: Docker Save
-    #   continueOnError: true
+        containerRegistry: 'shisanfan-docker-registry'
+        repository: 'shisanfan/dabaozhuanjia-web'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: |
+          $(docker_tag)
+          latest
