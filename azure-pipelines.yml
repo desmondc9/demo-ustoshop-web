@@ -27,6 +27,20 @@ stages:
               tags: |
                 $(docker_tag)
                 latest
+          
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '.pipeline/'
+              Contents: '**'
+              TargetFolder: '$(Build.ArtifactStagingDirectory)'
+              CleanTargetFolder: true
+              OverWrite: true
+          
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
 
   - stage: DeployToStaging
     displayName: "Deploy to Staging"
@@ -38,6 +52,9 @@ stages:
           runOnce: #rolling, canary are the other strategies that are supported
             deploy:
               steps:
+                - download: drop
+
+                - script: ls -alh
                 - task: UsePythonVersion@0
                   inputs:
                     versionSpec: '3.11'
