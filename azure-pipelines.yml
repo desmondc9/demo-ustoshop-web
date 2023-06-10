@@ -1,5 +1,13 @@
 trigger:
-  - '*'
+  branches:
+    include:
+      - '*'
+
+pr:
+  autoCancel: true
+  branches:
+    include:
+      - 'main'
 
 resources:
   - repo: self
@@ -27,7 +35,7 @@ stages:
               tags: |
                 $(docker_tag)
                 latest
-          
+
           - task: CopyFiles@2
             inputs:
               SourceFolder: '.pipeline/'
@@ -35,7 +43,7 @@ stages:
               TargetFolder: '$(Build.ArtifactStagingDirectory)'
               CleanTargetFolder: true
               OverWrite: true
-          
+
           - task: PublishBuildArtifacts@1
             inputs:
               PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -43,7 +51,6 @@ stages:
               publishLocation: 'Container'
 
   - stage: DeployToStaging
-    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.targetBranchName'], 'main'))
     displayName: "Deploy to Staging"
     dependsOn: BuildStage
     jobs:
@@ -60,7 +67,7 @@ stages:
                     versionSpec: '3.10'
                     addToPath: true
                     architecture: 'x64'
-                
+
                 - script: pip install -r $(Pipeline.Workspace)/drop/requirements.txt
                   displayName: Pip Install
 
@@ -70,5 +77,5 @@ stages:
                     ALIBABA_CLOUD_ACCESS_KEY_ID: $(accesskey_id)
                     ALIBABA_CLOUD_ACCESS_KEY_SECRET: $(accesskey_secret)
                     DOCKER_TAG: $(docker_tag)
-                
-                
+
+
