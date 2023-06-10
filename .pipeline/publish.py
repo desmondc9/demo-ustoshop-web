@@ -1,5 +1,7 @@
 import argparse
+import logging
 import os
+import pprint
 
 from alibabacloud_fc_open20210406 import models as fc__open_20210406_models
 from alibabacloud_fc_open20210406.client import Client as FC_Open20210406Client
@@ -7,6 +9,7 @@ from alibabacloud_tea_openapi import models as open_api_models
 from alibabacloud_tea_util import models as util_models
 from alibabacloud_tea_util.client import Client as UtilClient
 
+logger = logging.getLogger(__name__)
 
 def create_client(
         accesskey_id: str,
@@ -50,9 +53,10 @@ def publish(
             headers=update_function_headers,
             runtime=runtime,
         )
-        print(result.to_map())
+        logger.info(pprint(result.to_map()))
     except Exception as error:
-        UtilClient.assert_as_string(error.message)
+        err_msg = UtilClient.assert_as_string(error.message)
+        logger.error(f'publish failed: {err_msg}')
 
 
 def parse_arguments():
@@ -99,6 +103,7 @@ def parse_arguments():
 
 if __name__ == '__main__':
     args = parse_arguments()
+    logger.info(f'arguments: {pprint(args)}')
 
     publish(
         accesskey_id=args.accesskey_id,
