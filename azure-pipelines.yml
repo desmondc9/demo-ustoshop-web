@@ -5,9 +5,9 @@ resources:
 - repo: self
 
 variables:
-  docker_service_connection: 'shisanfan-docker-registry'
-  docker_host: 'registry.cn-shanghai.aliyuncs.com'
-  docker_image: 'shisanfan/dabaozhuanjia-web'
+  docker_service_connection: shisanfan-docker-registry
+  docker_host: registry.cn-shanghai.aliyuncs.com
+  docker_image: shisanfan/dabaozhuanjia-web
   tag: '$(Build.BuildId)'
 
 stages:
