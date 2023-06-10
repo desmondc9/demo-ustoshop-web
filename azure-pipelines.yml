@@ -5,7 +5,7 @@ resources:
   - repo: self
 
 variables:
-
+  - group: aliyun-shisanfan
   - name: docker_tag
     value: '$(Build.BuildId)'
 
@@ -55,12 +55,18 @@ stages:
                 - download: drop
 
                 - script: ls -alh
+
                 - task: UsePythonVersion@0
                   inputs:
-                    versionSpec: '3.11'
+                    versionSpec: '3.10'
                     addToPath: true
                     architecture: 'x64'
-                - task: PythonScript@0
-                  inputs:
-                    scriptSource: 'filePath'
-                    scriptPath: '.pipeline/publish.py'
+
+                - script: |
+                    python publish.py
+                  env:
+                    ALIBABA_CLOUD_ACCESS_KEY_ID: $(accesskey_id)
+                    ALIBABA_CLOUD_ACCESS_KEY_SECRET: $(accesskey_secret)
+                    DOCKER_TAG: $(docker_tag)
+                
+                
