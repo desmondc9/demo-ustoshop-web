@@ -1,12 +1,9 @@
-import os
-import sys
 import argparse
+import os
 
-from typing import List
-
+from alibabacloud_fc_open20210406 import models as fc__open_20210406_models
 from alibabacloud_fc_open20210406.client import Client as FC_Open20210406Client
 from alibabacloud_tea_openapi import models as open_api_models
-from alibabacloud_fc_open20210406 import models as fc__open_20210406_models
 from alibabacloud_tea_util import models as util_models
 from alibabacloud_tea_util.client import Client as UtilClient
 
