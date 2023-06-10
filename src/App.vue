@@ -15,7 +15,7 @@
             使用指南
           </v-btn>
 
-          <v-btn variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4">
+          <v-btn variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4" @click.prevent.stop="router.push({name: 'Rank'})">
             打爆排行
           </v-btn>
 
