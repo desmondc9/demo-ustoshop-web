@@ -1,7 +1,7 @@
 import argparse
 import logging
 import os
-import pprint
+from pprint import pprint
 
 from alibabacloud_fc_open20210406 import models as fc__open_20210406_models
 from alibabacloud_fc_open20210406.client import Client as FC_Open20210406Client
