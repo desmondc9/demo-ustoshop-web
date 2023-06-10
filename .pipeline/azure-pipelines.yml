@@ -1,0 +1,49 @@
+trigger:
+  - '*'
+
+resources:
+  - repo: self
+
+variables:
+
+  - name: docker_tag
+    value: '$(Build.BuildId)'
+
+stages:
+  - stage: BuildStage
+    displayName: Build Image
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'shisanfan-docker-registry'
+              repository: 'shisanfan/dabaozhuanjia-web'
+              command: 'buildAndPush'
+              Dockerfile: '**/Dockerfile'
+              tags: |
+                $(docker_tag)
+                latest
+
+  - stage: DeployToStaging
+    displayName: "Deploy to Staging"
+    dependsOn: BuildStage
+    jobs:
+      - deployment:
+        environment: dabaozhuanjia-web-staging-env
+        strategy:
+          runOnce: #rolling, canary are the other strategies that are supported
+            deploy:
+              steps:
+                - task: UsePythonVersion@0
+                  inputs:
+                    versionSpec: '3.11'
+                    addToPath: true
+                    architecture: 'x64'
+                - task: PythonScript@0
+                  inputs:
+                    scriptSource: 'filePath'
+                    scriptPath: '.pipeline/publish.py'
