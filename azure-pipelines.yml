@@ -43,6 +43,7 @@ stages:
               publishLocation: 'Container'
 
   - stage: DeployToStaging
+    condition: and(succeeded(), eq(variables['Build.Reason'], 'PullRequest'), eq(variables['System.PullRequest.targetBranchName'], 'main'))
     displayName: "Deploy to Staging"
     dependsOn: BuildStage
     jobs:
