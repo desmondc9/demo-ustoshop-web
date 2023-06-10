@@ -52,7 +52,7 @@ stages:
           runOnce: #rolling, canary are the other strategies that are supported
             deploy:
               steps:
-                - download: drop
+                - download: current
 
                 - script: ls -alh
 
