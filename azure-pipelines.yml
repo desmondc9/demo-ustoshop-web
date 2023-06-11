@@ -14,8 +14,18 @@ resources:
 
 variables:
   - group: aliyun-shisanfan
+  - name: docker_registry
+    value: 'registry.cn-shanghai.aliyuncs.com'
+  - name: docker_image
+    value: 'shisanfan/dabaozhuanjia-web'
   - name: docker_tag
     value: '$(Build.BuildId)'
+  - name: service_name
+    value: 'dabaozhuanjia-services'
+  - name: function_name
+    value: 'dabaozhuanjia-web'
+  - name: env_staging
+    value: 'dabaozhuanjia-web-staging'
 
 stages:
   - stage: BuildStage
@@ -29,7 +39,7 @@ stages:
           - task: Docker@2
             inputs:
               containerRegistry: 'shisanfan-docker-registry'
-              repository: 'shisanfan/dabaozhuanjia-web'
+              repository: $(docker_image)
               command: 'buildAndPush'
               Dockerfile: '**/Dockerfile'
               tags: |
@@ -55,7 +65,7 @@ stages:
     dependsOn: BuildStage
     jobs:
       - deployment:
-        environment: dabaozhuanjia-web-staging-env
+        environment: $(env_staging)-env
         strategy:
           runOnce: #rolling, canary are the other strategies that are supported
             deploy:
@@ -71,7 +81,11 @@ stages:
                 - script: pip install -r $(Pipeline.Workspace)/drop/requirements.txt
                   displayName: Pip Install
 
-                - script: python $(Pipeline.Workspace)/drop/publish.py
+                - script: |
+                    python $(Pipeline.Workspace)/drop/publish.py \
+                      --service_name $(service_name) \
+                      --function_name $(function_name) \
+                      --image $(docker_registry)/$(docker_image):$(DOCKER_TAG)
                   displayName: Push to Aliyun Function
                   env:
                     ALIBABA_CLOUD_ACCESS_KEY_ID: $(accesskey_id)

@@ -11,6 +11,7 @@ from alibabacloud_tea_util.client import Client as UtilClient
 
 logger = logging.getLogger(__name__)
 
+
 def create_client(
         accesskey_id: str,
         accesskey_secret: str,
@@ -18,9 +19,9 @@ def create_client(
 ) -> FC_Open20210406Client:
     config = open_api_models.Config(
         access_key_id=accesskey_id,
-        access_key_secret=accesskey_secret
+        access_key_secret=accesskey_secret,
+        endpoint=endpoint
     )
-    config.endpoint = endpoint
     return FC_Open20210406Client(config)
 
 
@@ -45,18 +46,16 @@ def publish(
         custom_container_config=custom_container_config
     )
     runtime = util_models.RuntimeOptions()
-    try:
-        result = client.update_function_with_options(
-            service_name=service_name,
-            function_name=function_name,
-            request=update_function_request,
-            headers=update_function_headers,
-            runtime=runtime,
-        )
-        logger.info(pprint(result.to_map()))
-    except Exception as error:
-        err_msg = UtilClient.assert_as_string(error.message)
-        logger.error(f'publish failed: {err_msg}')
+
+    result = client.update_function_with_options(
+        service_name=service_name,
+        function_name=function_name,
+        request=update_function_request,
+        headers=update_function_headers,
+        runtime=runtime,
+    )
+
+    logger.info(pprint(result.to_map()))
 
 
 def parse_arguments():
