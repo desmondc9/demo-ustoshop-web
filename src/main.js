@@ -4,7 +4,6 @@ import { createPinia } from "pinia";
 import App from "./App.vue";
 import router from "./router";
 
-// Vuetify
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
@@ -25,3 +24,8 @@ app.use(router);
 app.use(vuetify);
 
 app.mount("#app");
+
+// router.beforeEach((to, from, next) => {
+//   // document.title = to.meta.title;
+//   next();
+// });
