@@ -2,6 +2,7 @@
 import { onMounted, reactive } from 'vue'
 import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
 import useBackendStore from '@/stores/backendStore'
+import router from '@/router'
 
 const backendStore = useBackendStore()
 const deliveryList = reactive([])
@@ -30,6 +31,18 @@ const downloadPdf = async (params) => {
     })
 }
 
+const deleteDeliveryOrder = async (id) => {
+  await deliveryOrderService.deleteDeliveryOrder(id).then(
+    (response) => {
+      let randomId = Date.now();
+      router.push({ name: 'DeliveryOrders', query: { random: randomId } });
+    },
+    (error) => {
+      console.log(error)
+    }
+  )
+}
+
 onMounted(async () => {
   await getDeliveryList()
   console.log(`deliveryList: ${deliveryList.value}`)
@@ -52,6 +65,7 @@ onMounted(async () => {
           <th>For Delivery To</th>
           <th>Descriptions</th>
           <th>PDF file</th>
+          <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -72,6 +86,7 @@ onMounted(async () => {
               Download Pdf
             </v-btn>
           </td>
+          <td><v-btn color="error" density="compact" @click="deleteDeliveryOrder(delivery.id)">Delete</v-btn></td>
         </tr>
         </tbody>
       </v-table>

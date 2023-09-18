@@ -20,6 +20,11 @@ class DeliveryOrderService {
     return response
   }
 
+  deleteDeliveryOrder = async (id) => {
+    const response = await this.client.delete(`/delivery-orders/${id}`)
+    return response
+  }
+
   createDeliveryChannel = async (data) => {
     const response = await this.client.post('/delivery-orders/delivery-channels', data)
     return response
