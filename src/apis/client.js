@@ -3,7 +3,7 @@ import useUserStore from '@/stores/userStore'
 
 const userStore = useUserStore()
 const client = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: decideBaseUrl(),
   timeout: 60000,
 })
 
@@ -32,5 +32,14 @@ client.interceptors.response.use(
     return Promise.reject(error)
   },
 )
+
+function decideBaseUrl() {
+  const env = import.meta.env.MODE
+  if (env==='development') {
+    return 'http://localhost:8080'
+  } else {
+    return 'https://squid-app-pxlml.ondigitalocean.app'
+  }
+}
 
 export default client
