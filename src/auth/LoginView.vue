@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { useUserStore } from '@/stores/user'
-import authApi from '@/apis/AuthApi'
+import useUserStore from '@/stores/userStore'
+import authApi from '@/auth/services/AuthApi'
 import router from '@/router'
 
 const userStore = useUserStore()
@@ -17,7 +17,7 @@ const login = async () => {
           userStore.password = password.value
           userStore.isLogin = true
         }
-      router.push({name: 'Index'})
+        router.push({ name: 'Index' })
       },
     ).catch((error) => {
       console.log(error)

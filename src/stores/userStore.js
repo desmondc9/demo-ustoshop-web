@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 
-export const useUserStore = defineStore('userStore', {
+const useUserStore = defineStore('userStore', {
 
   state: () => ({
     name: ref(''),
@@ -38,5 +38,6 @@ export const useUserStore = defineStore('userStore', {
   },
 })
 
-export default { useUserStore }
+
+export default useUserStore
 

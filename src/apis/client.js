@@ -1,6 +1,7 @@
 import axios from 'axios'
-import userStore from '@/stores/user'
+import useUserStore from '@/stores/userStore'
 
+const userStore = useUserStore()
 const client = axios.create({
   baseURL: 'http://localhost:8080',
   timeout: 60000,
