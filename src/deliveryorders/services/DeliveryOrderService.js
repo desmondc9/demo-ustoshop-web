@@ -15,6 +15,11 @@ class DeliveryOrderService {
     return response
   }
 
+  downloadPdf = async (data) => {
+    const response = await this.client.get('/delivery-orders/pdf', { params: data, responseType: 'blob' })
+    return response
+  }
+
   createDeliveryChannel = async (data) => {
     const response = await this.client.post('/delivery-orders/delivery-channels', data)
     return response

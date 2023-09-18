@@ -11,6 +11,25 @@ async function getDeliveryList() {
   deliveryList.push(...resp.data.data)
 }
 
+
+const downloadPdf = async (params) => {
+    await deliveryOrderService.downloadPdf(params).then(async (response) => {
+      const blob = new Blob([response.data], { type: response.headers['content-type'] })
+
+      // Download
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.setAttribute('download', `${params.deliveryOrderId}.pdf`) // or any other extension
+      document.body.appendChild(link)
+      link.click()
+
+      // Clean up after forcing download
+      link.parentNode.removeChild(link)
+      window.URL.revokeObjectURL(url)
+    })
+}
+
 onMounted(async () => {
   await getDeliveryList()
   console.log(`deliveryList: ${deliveryList.value}`)
@@ -33,6 +52,7 @@ onMounted(async () => {
           <th>For Delivery To</th>
           <th>Descriptions</th>
           <th>PDF file</th>
+          <th>PDF file</th>
         </tr>
         </thead>
         <tbody>
@@ -43,7 +63,17 @@ onMounted(async () => {
           <td>{{ delivery.weight.value }}</td>
           <td>{{ delivery.addressForDeliveryTo }}</td>
           <td>{{ delivery.descriptions }}</td>
-          <td><a target="_blank" :href="`${backendStore.host}/delivery-orders/pdf?path=${delivery.storagePath}`">Download Pdf</a></td>
+          <!--          <td><a target="_blank" :href="`${backendStore.host}/delivery-orders/pdf?path=${delivery.storagePath}`">Download Pdf</a></td>-->
+          <td>
+            <v-btn
+              @click.prevent.stop="downloadPdf(
+                {
+                path: `${backendStore.host}/delivery-orders/pdf?path=${delivery.storagePath}`,
+                deliveryOrderId: delivery.id
+                })">
+              Download Pdf
+            </v-btn>
+          </td>
         </tr>
         </tbody>
       </v-table>

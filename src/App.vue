@@ -26,6 +26,11 @@ onMounted(async () => {
 
         <v-col class="d-flex justify-end text-white">
           <v-btn v-if="userStore.isLogin" variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4"
+                 @click.prevent.stop="router.push({name: 'ImportRawDeliveryData'})">
+            Import
+          </v-btn>
+
+          <v-btn v-if="userStore.isLogin" variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4"
                  @click.prevent.stop="router.push({name: 'DeliveryOrders'})">
             Delivery Orders
           </v-btn>

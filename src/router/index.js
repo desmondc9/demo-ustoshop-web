@@ -11,16 +11,6 @@ const router = createRouter({
       component: IndexView,
     },
     {
-      path: '/aboutus',
-      name: 'AboutUs',
-      component: AboutUsView,
-    },
-    {
-      path: '/tutorial',
-      name: 'Tutorial',
-      component: () => import('@/views/TutorialView.vue'),
-    },
-    {
       path: '/login',
       name: 'Login',
       component: () => import('@/auth/LoginView.vue'),
@@ -34,6 +24,11 @@ const router = createRouter({
       path: '/delivery-orders',
       name: 'DeliveryOrders',
       component: () => import('@/deliveryorders/DeliveryOrdersView.vue'),
+    },
+    {
+      path: '/delivery-orders/import',
+      name: 'ImportRawDeliveryData',
+      component: () => import('@/deliveryorders/ImportRawDeliveryDataView.vue'),
     },
   ],
 })
