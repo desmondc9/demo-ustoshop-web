@@ -1,8 +1,15 @@
 <script setup>
 import router from '@/router'
+import { onMounted } from 'vue'
 import useUserStore from '@/stores/userStore'
+import useBackendStore from '@/stores/backendStore'
 
 const userStore = useUserStore()
+const backendStore = useBackendStore()
+
+onMounted(async () => {
+  backendStore.decideHost()
+})
 
 </script>
 

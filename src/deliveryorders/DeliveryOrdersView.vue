@@ -1,7 +1,9 @@
 <script setup>
 import { onMounted, reactive } from 'vue'
 import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
+import useBackendStore from '@/stores/backendStore'
 
+const backendStore = useBackendStore()
 const deliveryList = reactive([])
 
 async function getDeliveryList() {
@@ -41,7 +43,7 @@ onMounted(async () => {
           <td>{{ delivery.weight.value }}</td>
           <td>{{ delivery.addressForDeliveryTo }}</td>
           <td>{{ delivery.descriptions }}</td>
-          <td>{{ delivery.storagePath }}</td>
+          <td><a target="_blank" :href="`${backendStore.host}/delivery-orders/pdf?path=${delivery.storagePath}`">Download Pdf</a></td>
         </tr>
         </tbody>
       </v-table>
