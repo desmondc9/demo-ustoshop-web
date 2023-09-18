@@ -37,7 +37,7 @@ const userStore = useUserStore()
 
     </v-app-bar>
 
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
 
     <v-footer id="my-main" class="d-flex justify-end">
     </v-footer>

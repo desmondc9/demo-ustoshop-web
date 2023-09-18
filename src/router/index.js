@@ -30,6 +30,11 @@ const router = createRouter({
       name: 'Rank',
       component: () => import('@/views/RankView.vue'),
     },
+    {
+      path: '/delivery-orders',
+      name: 'DeliveryOrders',
+      component: () => import('@/deliveryorders/DeliveryOrdersView.vue'),
+    },
   ],
 })
 
