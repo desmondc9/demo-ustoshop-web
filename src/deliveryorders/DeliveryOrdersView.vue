@@ -52,7 +52,6 @@ onMounted(async () => {
           <th>For Delivery To</th>
           <th>Descriptions</th>
           <th>PDF file</th>
-          <th>PDF file</th>
         </tr>
         </thead>
         <tbody>
@@ -63,7 +62,6 @@ onMounted(async () => {
           <td>{{ delivery.weight.value }}</td>
           <td>{{ delivery.addressForDeliveryTo }}</td>
           <td>{{ delivery.descriptions }}</td>
-          <!--          <td><a target="_blank" :href="`${backendStore.host}/delivery-orders/pdf?path=${delivery.storagePath}`">Download Pdf</a></td>-->
           <td>
             <v-btn
               @click.prevent.stop="downloadPdf(
