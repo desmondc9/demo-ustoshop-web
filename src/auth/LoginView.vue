@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import useUserStore from '@/stores/userStore'
-import authApi from '@/auth/services/AuthApi'
+import authService from '@/auth/services/AuthService'
 import router from '@/router'
 
 const userStore = useUserStore()
@@ -10,20 +10,24 @@ const username = ref('')
 const password = ref('')
 
 const login = async () => {
-  await authApi.login(username.value, password.value)
-    .then((response) => {
+  await authService.login(username.value, password.value)
+    .then(async (response) => {
         if (response.status === 200) {
-          userStore.name = username.value
-          userStore.password = password.value
-          userStore.isLogin = true
+          userStore.setUser(username.value, password.value)
+          await setAuthorities()
+          await router.push({ name: 'Index' })
         }
-        router.push({ name: 'Index' })
       },
-    ).catch((error) => {
-      console.log(error)
+    )
+}
+
+async function setAuthorities() {
+  await authService.getAuthorities()
+    .then((response) => {
+      console.log('get authorities successfully')
+      userStore.setAuthorities(response.data)
+      console.log(response.data)
     })
-
-
 }
 
 </script>

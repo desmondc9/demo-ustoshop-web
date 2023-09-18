@@ -25,15 +25,18 @@ const useUserStore = defineStore('userStore', {
     },
   },
   actions: {
-    login(name, password) {
+    setUser(name, password) {
       this.name = name
       this.password = password
       this.isLogin = true
     },
-    logout() {
-      this.name = ''
-      this.password = ''
-      this.isLogin = false
+
+    removeUser() {
+      this.$reset()
+    },
+
+    setAuthorities(authorities) {
+      this.authorities = authorities
     },
   },
 })

@@ -29,7 +29,7 @@ const userStore = useUserStore()
           </v-btn>
 
           <v-btn v-if="userStore.isLogin" variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4"
-                 @click.prevent.stop="userStore.logout()">
+                 @click.prevent.stop="userStore.removeUser()">
             Logout
           </v-btn>
         </v-col>
