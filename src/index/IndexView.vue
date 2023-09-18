@@ -17,7 +17,7 @@
 
 .main {
   height: 95%;
-  background: url("https://dabaozhuanjia-web.oss-cn-shanghai.aliyuncs.com/images/background.png") no-repeat center center fixed !important;
+  background: url("/background.png") no-repeat center center fixed !important;
   background-size: cover !important;
 }
 
