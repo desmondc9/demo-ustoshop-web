@@ -55,7 +55,7 @@ const submit = async () => {
   tableData.map(async (item) => {
       await deliveryOrderService.importRawDeliveryData(item).then(
         (response) => {
-          router.push({ name: 'DeliveryOrderList' })
+          router.push({ name: 'DeliveryOrders' })
         },
         (error) => {
           console.log(error)
