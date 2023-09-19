@@ -175,7 +175,7 @@ function mergeData(deliveryData, channelCompositions) {
               <td><input type="number" v-model="item.totalNumberOfBoxes" /></td>
               <td>
                 <div v-for="(channel, channelIndex) in item.channelCompositions" :key="channelIndex">
-                  <v-row>
+                  <v-row class="mt-4">
                     <v-col>
                       <v-row>
                         <v-col>
@@ -193,7 +193,7 @@ function mergeData(deliveryData, channelCompositions) {
                           Number of Boxes:
                           <input type="number" v-model="channel.numberOfBoxes" /></v-col>
                       </v-row>
-                      <v-row>
+                      <v-row class="mb-4">
                         <v-col>
                           Address:
                           <input type="text" v-model="channel.address" /></v-col>
@@ -232,6 +232,13 @@ function mergeData(deliveryData, channelCompositions) {
 
 <style scoped>
 /* This will set the width of the first column */
+
+.data-table {
+  table, th, td {
+    border: 1px solid black;
+  }
+}
+
 .data-table th:nth-child(1) {
   width: auto;
 }
@@ -250,5 +257,9 @@ function mergeData(deliveryData, channelCompositions) {
 
 .data-table th:nth-child(5) {
   width: auto;
+}
+
+input[type="text"], input[type="number"] {
+  border: grey 1px solid;
 }
 </style>

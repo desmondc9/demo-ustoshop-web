@@ -14,32 +14,32 @@ async function getDeliveryList() {
 
 
 const downloadPdf = async (params) => {
-    await deliveryOrderService.downloadPdf(params).then(async (response) => {
-      const blob = new Blob([response.data], { type: response.headers['content-type'] })
+  await deliveryOrderService.downloadPdf(params).then(async (response) => {
+    const blob = new Blob([response.data], { type: response.headers['content-type'] })
 
-      // Download
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.setAttribute('download', `${params.deliveryOrderId}.pdf`) // or any other extension
-      document.body.appendChild(link)
-      link.click()
+    // Download
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.setAttribute('download', `${params.deliveryOrderId}.pdf`) // or any other extension
+    document.body.appendChild(link)
+    link.click()
 
-      // Clean up after forcing download
-      link.parentNode.removeChild(link)
-      window.URL.revokeObjectURL(url)
-    })
+    // Clean up after forcing download
+    link.parentNode.removeChild(link)
+    window.URL.revokeObjectURL(url)
+  })
 }
 
 const deleteDeliveryOrder = async (id) => {
   await deliveryOrderService.deleteDeliveryOrder(id).then(
     (response) => {
-      let randomId = Date.now();
-      router.push({ name: 'DeliveryOrders', query: { random: randomId } });
+      let randomId = Date.now()
+      router.push({ name: 'DeliveryOrders', query: { random: randomId } })
     },
     (error) => {
       console.log(error)
-    }
+    },
   )
 }
 
@@ -86,7 +86,9 @@ onMounted(async () => {
               Download Pdf
             </v-btn>
           </td>
-          <td><v-btn color="error" density="compact" @click="deleteDeliveryOrder(delivery.id)">Delete</v-btn></td>
+          <td>
+            <v-btn color="error" density="compact" @click="deleteDeliveryOrder(delivery.id)">Delete</v-btn>
+          </td>
         </tr>
         </tbody>
       </v-table>
