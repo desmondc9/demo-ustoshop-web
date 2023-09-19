@@ -1,11 +1,14 @@
 <script setup>
 import router from '@/router'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import useUserStore from '@/stores/userStore'
 import useBackendStore from '@/stores/backendStore'
 
 const userStore = useUserStore()
 const backendStore = useBackendStore()
+
+const drawer = ref(true)
+const rail = ref(true)
 
 onMounted(async () => {
   backendStore.decideHost()
@@ -25,15 +28,6 @@ onMounted(async () => {
         </v-col>
 
         <v-col class="d-flex justify-end text-white">
-          <v-btn v-if="userStore.isLogin" variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4"
-                 @click.prevent.stop="router.push({name: 'ImportRawDeliveryData'})">
-            Import
-          </v-btn>
-
-          <v-btn v-if="userStore.isLogin" variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4"
-                 @click.prevent.stop="router.push({name: 'DeliveryOrders'})">
-            Delivery Orders
-          </v-btn>
 
           <v-btn v-if="!userStore.isLogin" variant="text" class="pl-1 pr-1 pl-md-4 pr-md-4"
                  @click.prevent.stop="router.push({name: 'Login'})">
@@ -50,6 +44,40 @@ onMounted(async () => {
     </v-app-bar>
 
     <router-view :key="$route.fullPath"></router-view>
+
+
+    <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false">
+      <v-list-item
+        prepend-icon="mdi-menu"
+        title="Menu"
+        nav
+      >
+        <template v-slot:append>
+          <v-btn
+            variant="text"
+            icon="mdi-chevron-left"
+            @click.stop="rail = !rail"
+          ></v-btn>
+        </template>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list density="compact" nav>
+        <v-list-item :to="{ name: 'Index'}" exact prepend-icon="mdi-home" title="Home" value="Index"></v-list-item>
+        <v-list-item :to="{ name: 'DeliveryOrders'}" exact prepend-icon="mdi-truck-delivery-outline" title="Delivery Orders"
+                     value="account"></v-list-item>
+        <v-list-item :to="{name: 'ImportRawDeliveryData'}" exact prepend-icon="mdi-file-upload-outline" title="Import"
+                     value="users"></v-list-item>
+      </v-list>
+
+      <v-divider></v-divider>
+
+<!--      <v-list density="compact" nav v-if="userStore.hasAuthority('ADMIN')">-->
+<!--        <v-list-item :to="{ name: 'Users'}" exact prepend-icon="mdi-account-group" title="Users" value="Manage Users"></v-list-item>-->
+<!--      </v-list>-->
+
+    </v-navigation-drawer>
 
     <v-footer id="my-main" class="d-flex justify-end">
     </v-footer>

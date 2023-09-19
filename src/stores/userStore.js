@@ -38,6 +38,14 @@ const useUserStore = defineStore('userStore', {
     setAuthorities(authorities) {
       this.authorities = authorities
     },
+
+    hasAuthority(authority) {
+      return this.authorities.includes(authority)
+    },
+
+    hasAuthorities(authorities) {
+      return authorities.every(authority => this.hasAuthority(authority))
+    },
   },
 })
 
