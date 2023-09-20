@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
-import useUserStore from '@/stores/userStore'
+import useUserStore from '@/core/stores/userStore'
 import authService from '@/auth/services/AuthService'
-import router from '@/router'
+import router from '@/core'
 
 const userStore = useUserStore()
 
@@ -43,10 +43,11 @@ async function setAuthorities() {
         </v-row>
 
         <v-row class="d-flex justify-center align-center mt-12 pt-8">
-          <v-form class="my-form">
+          <v-form class="my-form" @submit.prevent="login">
             <v-text-field v-model="username" label="Username"></v-text-field>
             <v-text-field v-model="password" label="Password" type="password"></v-text-field>
-            <v-btn size="large" color="#f47a00" @click.prevent.stop="login()">Login</v-btn>
+            <v-btn size="large" color="#f47a00" type="submit">Login</v-btn>
+            <!-- Note: You must add type="submit" to the button that submits the form -->
           </v-form>
         </v-row>
 

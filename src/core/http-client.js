@@ -1,13 +1,13 @@
 import axios from 'axios'
-import useUserStore from '@/stores/userStore'
+import useUserStore from '@/core/stores/userStore'
 
 const userStore = useUserStore()
-const client = axios.create({
+const httpClient = axios.create({
   baseURL: decideBaseUrl(),
   timeout: 60000,
 })
 
-client.interceptors.request.use(
+httpClient.interceptors.request.use(
   (config) => {
     console.log(`Requesting url: ${config.url}`)
     if (config.url === '/login') {
@@ -23,7 +23,7 @@ client.interceptors.request.use(
   },
 )
 
-client.interceptors.response.use(
+httpClient.interceptors.response.use(
   (response) => {
     return response
   },
@@ -42,4 +42,4 @@ function decideBaseUrl() {
   }
 }
 
-export default client
+export default httpClient

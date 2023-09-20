@@ -1,8 +1,8 @@
-import client from '@/apis/client'
+import httpClient from '@/core/http-client'
 
 class AuthService {
   constructor() {
-    this.client = client
+    this.client = httpClient
   }
 
   login = async (username, password) => {

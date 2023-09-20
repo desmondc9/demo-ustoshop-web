@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import * as XLSX from 'xlsx'
 import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
-import router from '@/router'
+import router from '@/core'
 
 const deliveryData = reactive([])
 const channelCompositions = reactive([])

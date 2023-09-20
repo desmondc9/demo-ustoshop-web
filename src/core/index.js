@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '@/index/IndexView.vue'
-import useUserStore from '@/stores/userStore'
+import useUserStore from '@/core/stores/userStore'
 
 
 const router = createRouter({
@@ -20,6 +20,12 @@ const router = createRouter({
       path: '/delivery-orders',
       name: 'DeliveryOrders',
       component: () => import('@/deliveryorders/DeliveryOrdersView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/delivery-orders/import',
+      name: 'ImportRawDeliveryData',
+      component: () => import('@/deliveryorders/ImportRawDeliveryDataView.vue'),
       meta: { requiresAuth: true },
     },
     {

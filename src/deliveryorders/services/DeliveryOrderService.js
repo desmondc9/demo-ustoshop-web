@@ -1,8 +1,8 @@
-import client from '@/apis/client'
+import httpClient from '@/core/http-client'
 
 class DeliveryOrderService {
   constructor() {
-    this.client = client
+    this.client = httpClient
   }
 
   queryDeliveryOrders = async () => {

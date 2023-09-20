@@ -1,8 +1,8 @@
 <script setup>
-import router from '@/router'
+import router from '@/core'
 import { onMounted, ref } from 'vue'
-import useUserStore from '@/stores/userStore'
-import useBackendStore from '@/stores/backendStore'
+import useUserStore from '@/core/stores/userStore'
+import useBackendStore from '@/core/stores/backendStore'
 
 const userStore = useUserStore()
 const backendStore = useBackendStore()
