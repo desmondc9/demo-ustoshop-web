@@ -47,11 +47,7 @@ onMounted(async () => {
 
 
     <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false">
-      <v-list-item
-        prepend-icon="mdi-menu"
-        title="Menu"
-        nav
-      >
+      <v-list-item prepend-icon="mdi-menu" title="Menu" v-ripple>
         <template v-slot:append>
           <v-btn
             variant="text"
@@ -65,7 +61,8 @@ onMounted(async () => {
 
       <v-list density="compact" nav>
         <v-list-item :to="{ name: 'Index'}" exact prepend-icon="mdi-home" title="Home" value="Index"></v-list-item>
-        <v-list-item :to="{ name: 'DeliveryOrders'}" exact prepend-icon="mdi-truck-delivery-outline" title="Delivery Orders"
+        <v-list-item :to="{ name: 'DeliveryOrders'}" exact prepend-icon="mdi-truck-delivery-outline"
+                     title="Delivery Orders"
                      value="account"></v-list-item>
         <v-list-item :to="{name: 'ImportRawDeliveryData'}" exact prepend-icon="mdi-file-upload-outline" title="Import"
                      value="users"></v-list-item>
@@ -73,9 +70,9 @@ onMounted(async () => {
 
       <v-divider></v-divider>
 
-<!--      <v-list density="compact" nav v-if="userStore.hasAuthority('ADMIN')">-->
-<!--        <v-list-item :to="{ name: 'Users'}" exact prepend-icon="mdi-account-group" title="Users" value="Manage Users"></v-list-item>-->
-<!--      </v-list>-->
+      <!--      <v-list density="compact" nav v-if="userStore.hasAuthority('ADMIN')">-->
+      <!--        <v-list-item :to="{ name: 'Users'}" exact prepend-icon="mdi-account-group" title="Users" value="Manage Users"></v-list-item>-->
+      <!--      </v-list>-->
 
     </v-navigation-drawer>
 
