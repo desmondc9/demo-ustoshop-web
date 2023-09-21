@@ -53,7 +53,7 @@ onMounted(async () => {
 
 <template>
   <v-main class="main">
-    <v-container class="d-flex justify-center align-center pt-0">
+    <v-container>
       <!--    show delivery list-->
       <v-table class="mt-10">
         <thead>
