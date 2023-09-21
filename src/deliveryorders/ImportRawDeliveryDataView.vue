@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import * as XLSX from 'xlsx'
 import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
 import router from '@/core/router'
@@ -8,6 +8,7 @@ const deliveryData = reactive([])
 const channelCompositions = reactive([])
 const tableData = reactive([])
 
+const channelList = reactive([])
 
 const handleFileUpload = async (event) => {
   const file = event.target.files[0]
@@ -145,6 +146,18 @@ function mergeData(deliveryData, channelCompositions) {
     }
   })
 }
+
+onMounted(async () => {
+  await deliveryOrderService.queryAllDeliveryChannels().then(
+    (response) => {
+      console.log(channelList)
+      channelList.push(...response.data.data)
+    },
+    (error) => {
+      console.log(error)
+    },
+  )
+})
 </script>
 
 <template>
@@ -156,9 +169,9 @@ function mergeData(deliveryData, channelCompositions) {
         </v-col>
       </v-row>
 
-      <v-row justify="center">
+      <v-row class="justify-center">
         <v-col>
-          <v-table class="data-table mt-6">
+          <v-table class="data-table">
             <thead>
             <tr>
               <th>Bill Of Lading Number</th>
@@ -180,7 +193,17 @@ function mergeData(deliveryData, channelCompositions) {
                       <v-row>
                         <v-col>
                           Channel:
-                          <input type="text" v-model="channel.channelName" />
+                          <div class="combobox">
+                            <input
+                              type="text"
+                              v-model="channel.channelName"
+                              list="options"
+                              placeholder="Choose or input"
+                            />
+                            <datalist id="options">
+                              <option v-for="item in channelList" :key="item.id" :value="item.name" />
+                            </datalist>
+                          </div>
                         </v-col>
                       </v-row>
                       <v-row>

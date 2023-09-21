@@ -69,6 +69,7 @@ onMounted(async () => {
         <v-list-item :to="{name: 'ImportRawDeliveryData'}" exact prepend-icon="mdi-file-upload-outline" title="Import"
                      value="users"></v-list-item>
 
+        <v-divider></v-divider>
 
         <v-list-item v-if="userStore.hasAuthority('ADMIN')" :to="{ name: 'Users'}" exact
                      prepend-icon="mdi-account-group" title="Manage Users"

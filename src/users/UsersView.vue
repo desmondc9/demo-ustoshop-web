@@ -17,7 +17,6 @@ async function getUserListWithAuthorities() {
   userList.forEach(user => {
     user.authorities = auths.filter(auth => auth.userId === user.id).map(auth => auth.authorities)
   })
-  console.log(userList)
 
 }
 
