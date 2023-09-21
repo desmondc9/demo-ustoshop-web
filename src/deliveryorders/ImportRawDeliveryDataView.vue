@@ -150,9 +150,9 @@ function mergeData(deliveryData, channelCompositions) {
 <template>
   <v-main class="main">
     <v-container class="pt-0">
-      <v-row class="justify-center">
-        <v-col cols="12" md="2">
-          <input class="mt-10" type="file" @change="handleFileUpload" />
+      <v-row>
+        <v-col>
+          <v-file-input class="mt-10" @change="handleFileUpload"></v-file-input>
         </v-col>
       </v-row>
 
