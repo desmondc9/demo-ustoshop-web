@@ -24,9 +24,7 @@ const login = async () => {
 async function setAuthorities() {
   await authService.getAuthorities()
     .then((response) => {
-      console.log('get authorities successfully')
       userStore.setAuthorities(response.data)
-      console.log(response.data)
     })
 }
 

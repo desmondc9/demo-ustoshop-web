@@ -46,6 +46,18 @@ const router = createRouter({
       component: () => import('@/users/AddUser.vue'),
       meta: { requiresAuth: true },
     },
+    {
+      path: '/delivery-channels',
+      name: 'DeliveryChannels',
+      component: () => import('@/deliveryorders/DeliveryChannelsView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/add-channel',
+      name: 'AddChannel',
+      component: () => import('@/deliveryorders/AddChannel.vue'),
+      meta: { requiresAuth: true },
+    },
   ],
 })
 

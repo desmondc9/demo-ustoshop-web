@@ -69,9 +69,9 @@ onMounted(async () => {
 
       </v-row>
       <v-row class="justify-center">
-        <v-col- md="2">
-          <v-btn color="#f47a00" class="mt-3" @click="router.push({name: 'AddUser'})">Added a user</v-btn>
-        </v-col->
+        <v-col md="2">
+          <v-btn color="#f47a00" class="mt-3" @click="router.push({name: 'AddUser'})">Add a user</v-btn>
+        </v-col>
       </v-row>
     </v-container>
   </v-main>

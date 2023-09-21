@@ -9,7 +9,6 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
   (config) => {
-    console.log(`Requesting url: ${config.url}`)
     if (config.url === '/login') {
       return config
     } else {

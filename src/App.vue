@@ -68,14 +68,15 @@ onMounted(async () => {
         </v-list-item>
         <v-list-item :to="{name: 'ImportRawDeliveryData'}" exact prepend-icon="mdi-file-upload-outline" title="Import"
                      value="users"></v-list-item>
-      </v-list>
 
-      <v-divider></v-divider>
 
-      <v-list density="compact" nav v-if="userStore.hasAuthority('ADMIN')">
-
-        <v-list-item :to="{ name: 'Users'}" exact prepend-icon="mdi-account-group" title="Manage Users"
+        <v-list-item v-if="userStore.hasAuthority('ADMIN')" :to="{ name: 'Users'}" exact
+                     prepend-icon="mdi-account-group" title="Manage Users"
                      value="Manage Users"></v-list-item>
+
+        <v-list-item v-if="userStore.hasAuthority('ADMIN')" :to="{ name: 'DeliveryChannels'}" exact
+                     prepend-icon="mdi-domain" title="Manage Channels"
+                     value="Manage Channels"></v-list-item>
       </v-list>
 
     </v-navigation-drawer>

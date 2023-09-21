@@ -1,24 +1,22 @@
 <script setup>
 
 import router from '@/core/router'
-import { onMounted, reactive, ref } from 'vue'
-import userService from '@/users/services/UsersService'
-import authService from '@/auth/services/AuthService'
+import { ref } from 'vue'
+import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
 
-const username = ref('')
-const password = ref('')
-const isAdmin = ref(false)
+const channelName = ref('')
+const channelDefaultAddress = ref('')
 
 async function submit() {
 
-  userService.createUser({
-    username: username.value,
-    password: password.value,
-    isAdmin: isAdmin.value,
+  deliveryOrderService.createDeliveryChannel({
+    name: channelName.value,
+    defaultAddress: channelDefaultAddress.value,
   }).then(
     (response) => {
+      console.log(response)
       if (response.status === 201) {
-        router.push({ name: 'Users' })
+        router.push({ name: 'DeliveryChannels' })
       }
     },
     (error) => {
@@ -36,23 +34,16 @@ async function submit() {
         <v-col>
           <v-form class="mt-10">
             <v-text-field
-              v-model="username"
-              label="Username"
+              v-model="channelName"
+              label="Channel Name"
               required
             ></v-text-field>
 
             <v-text-field
-              type="password"
-              v-model="password"
-              label="Password"
+              v-model="channelDefaultAddress"
+              label="Default Address"
               required
             ></v-text-field>
-
-            <v-checkbox
-              v-model="isAdmin"
-              label="Is admin user?"
-              required
-            ></v-checkbox>
 
             <v-btn
               class="me-4"
