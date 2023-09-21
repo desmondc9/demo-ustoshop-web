@@ -2,7 +2,7 @@
 import { onMounted, reactive } from 'vue'
 import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
 import useBackendStore from '@/core/stores/backendStore'
-import router from '@/core'
+import router from '@/core/router'
 
 const backendStore = useBackendStore()
 const deliveryList = reactive([])

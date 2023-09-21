@@ -1,5 +1,5 @@
 <script setup>
-import router from '@/core'
+import router from '@/core/router'
 import { onMounted, ref } from 'vue'
 import useUserStore from '@/core/stores/userStore'
 import useBackendStore from '@/core/stores/backendStore'
@@ -60,19 +60,23 @@ onMounted(async () => {
       <v-divider></v-divider>
 
       <v-list density="compact" nav>
-        <v-list-item :to="{ name: 'Index'}" exact prepend-icon="mdi-home" title="Home" value="Index"></v-list-item>
+        <v-list-item :to="{ name: 'Index'}" exact prepend-icon="mdi-home"
+                     title="Index" value="Index">
+        </v-list-item>
         <v-list-item :to="{ name: 'DeliveryOrders'}" exact prepend-icon="mdi-truck-delivery-outline"
-                     title="Delivery Orders"
-                     value="account"></v-list-item>
+                     title="Delivery Orders" value="account">
+        </v-list-item>
         <v-list-item :to="{name: 'ImportRawDeliveryData'}" exact prepend-icon="mdi-file-upload-outline" title="Import"
                      value="users"></v-list-item>
       </v-list>
 
       <v-divider></v-divider>
 
-      <!--      <v-list density="compact" nav v-if="userStore.hasAuthority('ADMIN')">-->
-      <!--        <v-list-item :to="{ name: 'Users'}" exact prepend-icon="mdi-account-group" title="Users" value="Manage Users"></v-list-item>-->
-      <!--      </v-list>-->
+      <v-list density="compact" nav v-if="userStore.hasAuthority('ADMIN')">
+
+        <v-list-item :to="{ name: 'Users'}" exact prepend-icon="mdi-account-group" title="Manage Users"
+                     value="Manage Users"></v-list-item>
+      </v-list>
 
     </v-navigation-drawer>
 

@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import useUserStore from '@/core/stores/userStore'
 import authService from '@/auth/services/AuthService'
-import router from '@/core'
+import router from '@/core/router'
 
 const userStore = useUserStore()
 

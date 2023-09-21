@@ -18,6 +18,11 @@ class AuthService {
     const response = await this.client.get('/authorities')
     return response
   }
+
+  getAllAuthorities = async (data) => {
+    const response = await this.client.get('/all-authorities', { params: data })
+    return response
+  }
 }
 
 

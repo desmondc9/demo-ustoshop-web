@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 import * as XLSX from 'xlsx'
 import deliveryOrderService from '@/deliveryorders/services/DeliveryOrderService'
-import router from '@/core'
+import router from '@/core/router'
 
 const deliveryData = reactive([])
 const channelCompositions = reactive([])
@@ -233,11 +233,6 @@ function mergeData(deliveryData, channelCompositions) {
 <style scoped>
 /* This will set the width of the first column */
 
-.data-table {
-  table, th, td {
-    border: 1px solid black;
-  }
-}
 
 .data-table th:nth-child(1) {
   width: auto;
@@ -257,6 +252,13 @@ function mergeData(deliveryData, channelCompositions) {
 
 .data-table th:nth-child(5) {
   width: auto;
+}
+
+
+.data-table {
+  table, th, td {
+    border: 1px solid black;
+  }
 }
 
 input[type="text"], input[type="number"] {
