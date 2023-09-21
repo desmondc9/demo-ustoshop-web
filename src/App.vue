@@ -47,7 +47,7 @@ onMounted(async () => {
 
 
     <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false">
-      <v-list-item prepend-icon="mdi-menu" title="Menu" v-ripple>
+      <v-list-item class="menu" prepend-icon="mdi-menu" title="Menu" v-ripple>
         <template v-slot:append>
           <v-btn
             variant="text"
@@ -89,6 +89,10 @@ onMounted(async () => {
 
 
 .icon-wrapper:hover {
+  cursor: pointer;
+}
+
+.menu {
   cursor: pointer;
 }
 </style>
